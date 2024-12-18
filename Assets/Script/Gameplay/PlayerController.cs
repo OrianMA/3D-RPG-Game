@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private InGameUiManager _uiManager;
     [SerializeField] private Rigidbody _playerRb;
+    public PlayerAttack PlayerAttack;
 
     [Header("Movement Proprety")]
     [SerializeField] private float _speedMax;
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
         _playerInp.Enable();
     }
 
-
+    #region Player Input
     private void ProcessTouchStart(InputAction.CallbackContext context)
     {
         _playerAnimator.SetFloat("Speed",1);
@@ -48,10 +49,17 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessTouchCancel(InputAction.CallbackContext context)
     {
+        // Reset animation and joystick
         _playerAnimator.SetFloat("Speed",0);
         _uiManager.JoystickResetPos();
         _isMoving = false;
+
+        // ATTACK ! (animation)
+        if (PlayerAttack.IsEquipWeapon)
+            _playerAnimator.SetTrigger("_attack");
     }
+
+    #endregion
 
     private void Update()
     {
@@ -79,4 +87,6 @@ public class PlayerController : MonoBehaviour
             _playerRb.velocity = _playerRenderer.transform.forward * (_speedMax * dynamicSpeed);
         }
     }
+
+
 }
