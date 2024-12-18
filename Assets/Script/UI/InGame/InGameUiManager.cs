@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class InGameUiManager : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class InGameUiManager : MonoBehaviour
         _innerStick.transform.localPosition = _intialInnerStickPos;
     }
 
-    public void JoystickMoveInnerStick(Vector3 position)
+    public float JoystickMoveInnerStick(Vector3 position)
     {
         // Get the direction of the mouse
         Vector3 direction = position - _newInitialInnerStickPos;
@@ -55,5 +56,7 @@ public class InGameUiManager : MonoBehaviour
 
         // Set the new positon;
         _innerStick.transform.position = newInnerStickPos;
+
+        return Mathf.Clamp01(direction.magnitude / _innerStickMaxOffset);
     }
 }
