@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
 
     private bool _isMoving;
+    Vector3 playerLookDirection = new Vector3();
+    float angleWanted;
 
     private void Start()
     {
@@ -41,10 +44,16 @@ public class PlayerController : MonoBehaviour
     #region Player Input
     private void ProcessTouchStart(InputAction.CallbackContext context)
     {
-        _playerAnimator.SetFloat("Speed",1);
+        //  set joystick position, add start moving
         _uiManager.JoystickSetPosition(Input.mousePosition);
         _initialMousePosition = Input.mousePosition;
         _isMoving = true;
+
+        // Is plauyer attack before, force stop the attack
+        if (PlayerAttack.IsAttack)
+        {
+            PlayerAttack.StopAttack();
+        }
     }
 
     private void ProcessTouchCancel(InputAction.CallbackContext context)
@@ -63,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
         if (_isMoving)
         {
             // Set the value between 0,1, it's simule the joystickValue
@@ -75,17 +85,28 @@ public class PlayerController : MonoBehaviour
             if (dynamicSpeed < _joystickTreshold)
                 return;
             
-
-            // Get the direction wanted
-            Vector3 direction = (Input.mousePosition - _initialMousePosition).normalized;
+            playerLookDirection = (Input.mousePosition - _initialMousePosition).normalized;
 
             // Apply the rotation with the joystick direction with speed
-            float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-            _playerRenderer.transform.rotation = Quaternion.Lerp(_playerRenderer.transform.rotation, Quaternion.Euler(0, angle - 180,0) , _rotSpeed * Time.deltaTime);
+            angleWanted = Mathf.Atan2(playerLookDirection.x, playerLookDirection.y) * Mathf.Rad2Deg;
 
             // Apply speed smoothly 
             _playerRb.velocity = _playerRenderer.transform.forward * (_speedMax * dynamicSpeed);
         }
+        else if (PlayerAttack.IsEquipWeapon)
+        {
+            // Set the rotation direction to the nearest enemy
+            playerLookDirection = (EnemyManager.Instance.GetNearestEnemy(transform.position).transform.position - transform.position).normalized;
+            angleWanted = Mathf.Atan2(playerLookDirection.x, playerLookDirection.z) * Mathf.Rad2Deg;
+        }
+        // Get the direction wanted
+
+
+        _playerRenderer.transform.rotation = Quaternion.Lerp(
+                                                    _playerRenderer.transform.rotation,
+                                                    Quaternion.Euler(0, angleWanted, 0),
+                                                    _rotSpeed * Time.deltaTime
+);
     }
 
 

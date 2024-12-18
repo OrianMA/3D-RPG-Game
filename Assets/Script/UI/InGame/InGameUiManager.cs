@@ -10,8 +10,6 @@ public class InGameUiManager : MonoBehaviour
     [SerializeField] private RectTransform _innerStick;
     [SerializeField] private float _innerStickMaxOffset;
 
-
-
     // JoyStick value
     // 2 Pos for reset Joystick pos on cancel click
     private Vector3 _intialJoyStickPos;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponSpawner : MonoBehaviour
@@ -15,6 +13,7 @@ public class WeaponSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Detect player an equip the weapon assign
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             other.GetComponent<PlayerController>().PlayerAttack.Equip(_weapon);

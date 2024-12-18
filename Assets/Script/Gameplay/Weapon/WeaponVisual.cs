@@ -7,16 +7,25 @@ public class WeaponVisual : MonoBehaviour
     [SerializeField] float _animationDuration;
     public void OnAttack()
     {
-        //StartCoroutine(EnableVisualAttack());
+        
+    }
+
+    //Force stop attack
+    public void StopAttack()
+    {
+        StopAllCoroutines();
+        _trailRenderer.enabled = false;
     }
     public void OnBeforeAttack()
     {
+        StopAllCoroutines();
         StartCoroutine(EnableVisualAttack());
     }
 
+    // Enable visual attack (trail)
     IEnumerator EnableVisualAttack()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.4f);
         _trailRenderer.enabled = true;
         yield return new WaitForSeconds(_animationDuration);
         _trailRenderer.enabled = false;
