@@ -7,6 +7,10 @@ public class Weapon : ScriptableObject
     [SerializeField] protected WeaponVisual _weaponVisual;
     [SerializeField] protected LayerMask enemyLayer;
     [SerializeField] protected int _damage;
+    [SerializeField] protected float _attackRadius;
+    [SerializeField] protected float _attackLenght;
+
+    public float GetAttackLenght() => _attackLenght;
 
     // Gameobject visual
     public WeaponVisual WeaponVisualInstantiate;
@@ -38,4 +42,5 @@ public class Weapon : ScriptableObject
     {
         WeaponVisualInstantiate.StopAttack();
     }
+
 }

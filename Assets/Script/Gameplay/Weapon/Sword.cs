@@ -3,22 +3,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Sword", menuName = "ScriptableObjects/Weapon/Sword", order = 1)]
 public class Sword : Weapon
 {
-    [SerializeField] private float _attackRadius;
-    [SerializeField] private float _attackLenght;
+
     public override void OnAttack()
     {
         base.OnAttack();
 
-        RaycastHit hit;
-        Vector3 p1 = _weaponUser.transform.position + Vector3.up * .5f;
-        Vector3 p2 = p1 + Vector3.forward * _attackLenght;
+        // The position of the capsuleCast
+        Vector3 p1 = _weaponUser.transform.position;
+        Vector3 p2 = _weaponUser.transform.position + _weaponUser.transform.forward * _attackLenght;
 
-        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if (Physics.CapsuleCast(p1, p2, _attackRadius, _weaponUser.transform.forward, out hit, 10, enemyLayer))
+
+        // Cast the attack base on attack range
+        foreach (RaycastHit targetHit in Physics.CapsuleCastAll(p1, p2, _attackRadius, _weaponUser.transform.forward, _attackLenght, enemyLayer))
         {
-            Debug.Log(hit.collider.name);
-            
-            EntityHealth entityHealth = hit.collider.GetComponent<EntityHealth>();
+            EntityHealth entityHealth = targetHit.collider.GetComponent<EntityHealth>();
             entityHealth.TakeDamage(_damage);
         }
     }

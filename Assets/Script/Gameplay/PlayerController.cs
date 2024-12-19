@@ -1,7 +1,8 @@
+using BaseTemplate.Behaviours;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoSingleton<PlayerController>
 {
     [Header("References")]
     [SerializeField] private GameObject _playerRenderer;
@@ -84,20 +85,23 @@ public class PlayerController : MonoBehaviour
             // Apply treshold for not better control and smotther visual
             if (dynamicSpeed < _joystickTreshold)
                 return;
-            
+
+            // Get the direction wanted
             playerLookDirection = (Input.mousePosition - _initialMousePosition).normalized;
 
             // Apply the rotation with the joystick direction with speed
             angleWanted = Mathf.Atan2(playerLookDirection.x, playerLookDirection.y) * Mathf.Rad2Deg;
 
             // Apply speed smoothly 
-            _playerRb.velocity = _playerRenderer.transform.forward * (_speedMax * dynamicSpeed);
+            _playerRb.velocity = _playerRenderer.transform.forward * (_speedMax * dynamicSpeed * Time.fixedDeltaTime);
         }
         else if (PlayerAttack.IsEquipWeapon && _isEnemyAlive)
         {
             // Set the rotation direction to the nearest enemy
             EnemyController enemyTarget = EnemyManager.Instance.GetNearestEnemy(transform.position);
             if (enemyTarget != null) {
+
+                // Get the direction wanted
                 playerLookDirection = (enemyTarget.transform.position - transform.position).normalized;
                 angleWanted = Mathf.Atan2(playerLookDirection.x, playerLookDirection.z) * Mathf.Rad2Deg;
             } else
@@ -107,14 +111,12 @@ public class PlayerController : MonoBehaviour
                 PlayerAttack.StopAttack();
             }
         }
-        // Get the direction wanted
 
-
+        // Apply rotation with the speed 
         _playerRenderer.transform.rotation = Quaternion.Lerp(
                                                     _playerRenderer.transform.rotation,
                                                     Quaternion.Euler(0, angleWanted, 0),
-                                                    _rotSpeed * Time.deltaTime
-);
+                                                    _rotSpeed * Time.fixedDeltaTime);
     }
 
 

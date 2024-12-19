@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class EnemyManager : MonoSingleton<EnemyManager>
 {
+    public bool IsFullEnemy;
+    public bool CanSpawnEnemy;
     [SerializeField] private List<EnemyController> enemyInMap = new();
+    [SerializeField] private int _maxEnemyInMap;
 
 
     public void AddEnemy(EnemyController enemy)
     {
+        // The list are use to know who is the nearest to player and controle the mass (quatity of enemy)
         enemyInMap.Add(enemy);
+        if (enemyInMap.Count >= _maxEnemyInMap)
+        {
+            IsFullEnemy = true;
+        }
     }
 
     public void RemoveEnemy(EnemyController enemy)
     {
         enemyInMap.Remove(enemy);
+        IsFullEnemy = false;
     }
 
     public EnemyController GetNearestEnemy(Vector3 pos)
