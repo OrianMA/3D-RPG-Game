@@ -7,7 +7,9 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private Weapon _weaponEquip;
     [SerializeField] private Transform _weaponTransformParent;
+    [SerializeField] private Animator _playerAttackAnimator;
 
+    private WeaponVisual _weaponVisual;
     // Call in attack animation
     public void Attack()
     {
@@ -26,13 +28,19 @@ public class PlayerAttack : MonoBehaviour
     public void Equip(Weapon weapon)
     {
         _weaponEquip = weapon;
-        _weaponEquip.Init(_weaponTransformParent, 1);
+        _weaponEquip.Init(_weaponTransformParent, transform.parent.gameObject, _playerAttackAnimator);
+        _weaponVisual = _weaponEquip.WeaponVisualInstantiate;
         IsEquipWeapon = true;
     }
 
-    // Call first frame of attack animation
-    public void BeforeAttack()
+    public void EnableWeaponVisual()
     {
-        _weaponEquip.OnBeforeAttack();
+        _weaponVisual.OnAttack();
     }
+    public void DisableWeaponVisual()
+    {
+        if (_weaponVisual)
+            _weaponVisual.StopAttack();
+    }
+
 }

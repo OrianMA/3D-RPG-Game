@@ -5,37 +5,37 @@ public class Weapon : ScriptableObject
 {
     [SerializeField] protected float _animationAttackSpeed = 1;
     [SerializeField] protected WeaponVisual _weaponVisual;
+    [SerializeField] protected LayerMask enemyLayer;
+    [SerializeField] protected int _damage;
 
     // Gameobject visual
-    private WeaponVisual _weaponVisualInstantiate;
-
-    public virtual void Init(Transform weaponParent, float newScale)
+    public WeaponVisual WeaponVisualInstantiate;
+    protected GameObject _weaponUser;
+    public virtual void Init(Transform weaponVisualParent, GameObject weaponUser, Animator attackAnimator = null)
     {
         // if the weapon already instantiate
-        if (_weaponVisualInstantiate)
-            _weaponVisualInstantiate.transform.parent = weaponParent;
+        if (WeaponVisualInstantiate)
+            WeaponVisualInstantiate.transform.parent = weaponVisualParent;
         else
-            _weaponVisualInstantiate = Instantiate(_weaponVisual, weaponParent);
+            WeaponVisualInstantiate = Instantiate(_weaponVisual, weaponVisualParent);
 
+        _weaponUser = weaponUser;
 
         // Reset the transform component
-        _weaponVisualInstantiate.transform.localScale = Vector3.one * newScale;
-        _weaponVisualInstantiate.transform.localPosition = Vector3.zero;
-        _weaponVisualInstantiate.transform.localRotation = Quaternion.Euler(0,0,0);
+        WeaponVisualInstantiate.transform.localPosition = Vector3.zero;
+        WeaponVisualInstantiate.transform.localRotation = Quaternion.Euler(0,0,0);
+
+        if (attackAnimator != null)
+            attackAnimator.SetFloat("AttackSpeed", _animationAttackSpeed);
     }
 
     // Call in animation, all the attack sytem are here
     public virtual void OnAttack()
     {
-        _weaponVisualInstantiate.OnAttack();
+
     }
     public virtual void StopAttack()
     {
-        _weaponVisualInstantiate.StopAttack();
-    }
-
-    public virtual void OnBeforeAttack()
-    {
-        _weaponVisualInstantiate.OnBeforeAttack();
+        WeaponVisualInstantiate.StopAttack();
     }
 }

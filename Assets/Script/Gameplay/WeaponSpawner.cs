@@ -8,7 +8,7 @@ public class WeaponSpawner : MonoBehaviour
 
     private void Start()
     {
-        _weapon.Init(_weaponVisualParent, newScale);
+        _weapon.Init(_weaponVisualParent, gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

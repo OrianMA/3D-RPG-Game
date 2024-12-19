@@ -2,25 +2,17 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private int _lifePoint;
-    [SerializeField] private int _damage;
-
-
+    [SerializeField] private EntityHealth _entityHealth;
     private void Start()
     {
         EnemyManager.Instance.AddEnemy(this);
-    }
-    public void TakeDamage(int damage)
-    {
-        _lifePoint -= damage;
-        if (_lifePoint <= 0 )
-        {
-            Die();
-        }
+        _entityHealth.OnDieEvent.AddListener(OnEnemyDie);
     }
 
-    public void Die()
+    private void OnEnemyDie()
     {
+        EnemyManager.Instance.RemoveEnemy(this);
         Destroy(gameObject);
     }
+
 }

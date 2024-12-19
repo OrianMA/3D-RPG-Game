@@ -19,6 +19,10 @@ public class EnemyManager : MonoSingleton<EnemyManager>
 
     public EnemyController GetNearestEnemy(Vector3 pos)
     {
+        if (enemyInMap.Count <= 0) 
+            return null;
+
+
         // Create list of Enemy and his distance to pos
         List<KeyValuePair<EnemyController, float>> distance = new();
 

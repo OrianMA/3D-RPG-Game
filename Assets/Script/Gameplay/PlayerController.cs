@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
 
     private bool _isMoving;
+    private bool _isEnemyAlive;
     Vector3 playerLookDirection = new Vector3();
     float angleWanted;
 
@@ -50,7 +47,7 @@ public class PlayerController : MonoBehaviour
         _isMoving = true;
 
         // Is plauyer attack before, force stop the attack
-        if (PlayerAttack.IsAttack)
+        if (PlayerAttack.IsEquipWeapon)
         {
             PlayerAttack.StopAttack();
         }
@@ -64,8 +61,11 @@ public class PlayerController : MonoBehaviour
         _isMoving = false;
 
         // ATTACK ! (animation)
-        if (PlayerAttack.IsEquipWeapon)
+        if (PlayerAttack.IsEquipWeapon && EnemyManager.Instance.GetNearestEnemy(transform.position))
+        {
             _playerAnimator.SetTrigger("_attack");
+            _isEnemyAlive = true;
+        }
     }
 
     #endregion
@@ -93,11 +93,19 @@ public class PlayerController : MonoBehaviour
             // Apply speed smoothly 
             _playerRb.velocity = _playerRenderer.transform.forward * (_speedMax * dynamicSpeed);
         }
-        else if (PlayerAttack.IsEquipWeapon)
+        else if (PlayerAttack.IsEquipWeapon && _isEnemyAlive)
         {
             // Set the rotation direction to the nearest enemy
-            playerLookDirection = (EnemyManager.Instance.GetNearestEnemy(transform.position).transform.position - transform.position).normalized;
-            angleWanted = Mathf.Atan2(playerLookDirection.x, playerLookDirection.z) * Mathf.Rad2Deg;
+            EnemyController enemyTarget = EnemyManager.Instance.GetNearestEnemy(transform.position);
+            if (enemyTarget != null) {
+                playerLookDirection = (enemyTarget.transform.position - transform.position).normalized;
+                angleWanted = Mathf.Atan2(playerLookDirection.x, playerLookDirection.z) * Mathf.Rad2Deg;
+            } else
+            {
+                _isEnemyAlive = false;
+                _playerAnimator.SetTrigger("_stopAttack");
+                PlayerAttack.StopAttack();
+            }
         }
         // Get the direction wanted
 
