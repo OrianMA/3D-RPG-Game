@@ -29,7 +29,10 @@ I focused on making this system smooth and adaptable. I linked it with the **UIJ
 
 > **Technical description:**  
 > In the new Unity Input System, I configured various movement values using the **UIJoystick**. These values control the current speed and direction, with a range between 0 and 1.  
-> This allows the player to move both slowly and quickly. By integrating this with an **animation blend tree**, the player’s movements feel much smoother! I also added small thresholds to avoid weird rotations, improving both movement and attack control.  
+> This allows the player to move both slowly and quickly. By integrating this with an **animation blend tree**, the player’s movements feel much smoother! I also added small thresholds to avoid weird rotations, improving both movement and attack control.
+>
+> I chose not to create additional GitHub branches, as I am working alone on this project. I know that commits are saved in GitHub, but of course, if multiple people were working on this project, I would create separate branches.  
+> I also didn’t focus much on the UI because my primary goal was to concentrate on the gameplay and ensuring a solid code hierarchy. This way, I could build a robust system that can be expanded upon later!
 
 ---
 <br/>
