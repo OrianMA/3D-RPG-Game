@@ -149,4 +149,7 @@ If the game were to continue development, here are the steps I would take to tur
    The development process should remain focused on a well-defined end goal. This includes creating documentation, maintaining clear communication, and performing regular tests to ensure the game stays on track towards the desired final version.
 
 
+# 7. To Finish  
 
+> This technical test was really enjoyable, and I’m proud of the work I’ve done. It reflects my skills well. I’ve always enjoyed RPG games, and developing one too ! There were several challenges along the way, as well as valuable lessons learned, which will help me improve my game programming skills. I hope the game is appreciated! :D  
+> Thank you for taking the time to read! :)
