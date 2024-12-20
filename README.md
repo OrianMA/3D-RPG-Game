@@ -123,4 +123,30 @@ I believe there are many areas for improvement, as some mechanics were created q
 > **Summary:**  
 > There are many areas for improvement, but I’m proud of the work I’ve done. The game works well, and it provides a strong foundation to build a polished and engaging game. Many of the improvements are focused on polishing existing mechanics and adding additional features to enhance the overall experience.
 
+# 6. Future Vision  
+
+If the game were to continue development, here are the steps I would take to turn this prototype into a full-fledged game:
+
+1. **Define the Objective and Game Loop**:  
+   The core mechanics should revolve around player movement, attacking, changing weapons, and defeating enemies. Based on these mechanics, we could design for exemple a survival game. The game loop could look like this:  
+   - Spawn enemies  
+   - Collect weapons  
+   - Defeat enemies  
+   - Upgrade skills or weapons  
+   - Fight stronger enemies  
+   - Survive the horde or die (and repeat)  
+
+2. **Develop Features for Maximum Freedom**:  
+   To enhance the gameplay experience, we need to expand the variety of enemies, weapons, and upgrades. A strong sense of **progression** and **improvement** is crucial for player engagement. Features like leveling up, weapon upgrades, and additional power-ups will add more depth and keep the game rewarding.  
+
+3. **Conduct Playtesting**:  
+   Playtesting is essential to understand how players interact with the game. It's important to see what players enjoy, what they dislike, and how they feel while playing. Observing their reactions will help identify areas of improvement and refine the gameplay experience.  
+
+4. **Adjust or Add Features Based on Feedback**:  
+   Based on playtest results, we can refine or introduce new features to improve the overall player experience. By analyzing player feedback, we can tweak gameplay mechanics, visuals, and other aspects to enhance the emotional engagement and overall enjoyment.  
+
+5. **Continue Development with a Clear Vision**:  
+   The development process should remain focused on a well-defined end goal. This includes creating documentation, maintaining clear communication, and performing regular tests to ensure the game stays on track towards the desired final version.
+
+
 
