@@ -56,3 +56,31 @@ Once everything was functional, I focused on testing, fixing bugs, and polishing
 - **Code cleanup and comments**  
 
 This final phase ensured the game felt more enjoyable and visually appealing.  
+
+### Visuals  
+Below is the screen of my toggl track used during this test :  
+![Toggl Track](ReadmeAsset/TogglTrack.png)
+
+---
+<br/>
+
+# Time Spent on Each Phase  
+
+- As you can see, I spent around ***two hours*** making a solid player movement system that works well with the animation and the **UI Joystick**. After these two hours, I didn't need to touch the movement code or animations again.  
+<br/>
+
+- The ***weapon hierarchy*** took up most of my time. It was important to set it up correctly to save time later. On the other hand, the **enemy controller** and **manager**, including the logic to get the nearest enemy, didn't take much time to implement.  
+<br/>
+
+- In the next phase, I revisited and improved the weapon code because I wasn’t satisfied with certain details. The changes were fast to implement. After that, I added several smaller features that dont take me much time, such as an **entity health system** to handle damage and death, and an **attack system** for swords with attack speed and animations.  
+<br/>
+
+- In the final phase, I added more polish:
+  - **Moving the enemy bee** for dynamism.  
+  - Adding a **particle system**.  
+  - Implementing a **static spawner** with additional enemies.  
+
+  Most of these smaller features didn’t take much time. However, revising the weapon pickup system consumed the most time due to various bugs and the need to rethink the **weapon script's spawner and visual**.  
+<br/>
+
+To finish, I was comfortable with this project. I relearned some features and discovered new ones, like **UI Joystick control**, which was pretty fun!  
