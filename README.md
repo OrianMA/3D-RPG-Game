@@ -104,3 +104,23 @@ There were several aspects of the project that took significant time and posed c
 > **Summary:**  
 > The ***UIJoystick*** was the most time-consuming and challenging task. However, once completed, it didn’t require further adjustments. In contrast, the ***weapon code*** was frequently updated as it is the game’s main mechanic, making it reasonable to spend extra time refining it.
 
+# 5. Areas for Improvement  
+
+I believe there are many areas for improvement, as some mechanics were created quickly due to time constraints. Here they are, listed in order:  
+
+1. **EnemyController**:  
+   I created a simple **EnemyController** that just makes enemies run towards the player. Ideally, the system could be expanded like the weapon hierarchy, allowing for multiple types of enemies with different attacks and behaviors. However, for testing purposes, it works fine with varying health, speed, and size.  
+
+2. **Weapon Visuals**:  
+   The weapon visuals work well for a prototype, but I believe there are different ways to approach this. I could introduce a choice of weapon visuals and follow a more defined **artistic direction** to make it visually cohesive.  
+
+3. **Polishing Visuals**:  
+   I added some particle effects and line renderers to enhance the visuals. While the visuals are not perfect, they work and are understandable. More time could be spent refining these to improve the overall aesthetic.  
+
+4. **Camera and Enemy Spawn**:  
+   The camera’s distance and rotation could be improved for better control and visibility. Perhaps using an **isometric view** would be more effective. Additionally, the enemy spawner could be more dynamic—maybe spawning enemies in waves, and instead of static positions in a circle, they could spawn around the player at varying distances and offsets, depending on the resolution.  
+
+> **Summary:**  
+> There are many areas for improvement, but I’m proud of the work I’ve done. The game works well, and it provides a strong foundation to build a polished and engaging game. Many of the improvements are focused on polishing existing mechanics and adding additional features to enhance the overall experience.
+
+
