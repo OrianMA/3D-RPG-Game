@@ -1,4 +1,4 @@
-# Introduction
+# 1. Introduction
 
 This project is a test to evaluate my hard skills in Game Development and in
 particular the following pillars : code **architecture**, code **readability**, code
@@ -7,7 +7,7 @@ particular the following pillars : code **architecture**, code **readability**, 
 
 <br/>
 
-# Test approaching
+# 2. Test approaching
 
 ## Before begin
 First, I read all the technical test document and i imagine how can be the game, at the same time i download the unity version needed, and start to create a git project.
@@ -64,7 +64,7 @@ Below is the screen of my toggl track used during this test :
 ---
 <br/>
 
-# Time Spent on Each Phase  
+# 3. Time Spent on Each Phase  
 
 - As you can see, I spent around ***two hours*** making a solid player movement system that works well with the animation and the **UI Joystick**. After these two hours, I didn't need to touch the movement code or animations again.  
 <br/>
@@ -84,3 +84,23 @@ Below is the screen of my toggl track used during this test :
 <br/>
 
 To finish, I was comfortable with this project. I relearned some features and discovered new ones, like **UI Joystick control**, which was pretty fun!  
+
+# 4. Main Challenges  
+
+There were several aspects of the project that took significant time and posed challenges. Here they are in order of difficulty:  
+
+1. **UIJoystick**:  
+   The joystick controls the player’s speed and direction and needed to move dynamically to the player’s click position. It also had to align perfectly with the visual representation. This was clearly the hardest part of the project.  
+
+2. **Weapon Hierarchy**:  
+   I wanted the hierarchy to be as clear and modular as possible. Since weapons are one of the main mechanics in the game, it was crucial to ensure this system worked seamlessly. Matching it with the visuals also added complexity.  
+
+3. **Weapon Visuals**:  
+   The in-game weapon visuals and the actual weapon functionality are linked but perform different tasks. Integrating the two systems without bugs and ensuring they worked perfectly together required a lot of effort.  
+
+4. **Polishing Attacks**:  
+   The attack system relies on animations, combined with particle effects and line visualizations. However, when switching abruptly between animations (e.g., from attacking to running), some attack visuals would not disappear correctly, causing visual glitches.  
+
+> **Summary:**  
+> The ***UIJoystick*** was the most time-consuming and challenging task. However, once completed, it didn’t require further adjustments. In contrast, the ***weapon code*** was frequently updated as it is the game’s main mechanic, making it reasonable to spend extra time refining it.
+
